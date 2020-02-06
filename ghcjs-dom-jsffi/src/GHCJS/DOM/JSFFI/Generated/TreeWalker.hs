@@ -18,7 +18,7 @@ module GHCJS.DOM.JSFFI.Generated.TreeWalker
         js_getCurrentNode, getCurrentNode, TreeWalker(..), gTypeTreeWalker)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -58,7 +58,7 @@ parentNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker.parentNode Mozilla TreeWalker.parentNode documentation> 
 parentNodeUnchecked :: (MonadIO m) => TreeWalker -> m Node
 parentNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_parentNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69587", fromJust)) Prelude.id) . nullableToMaybe <$> (js_parentNode self))
  
 foreign import javascript unsafe "$1[\"firstChild\"]()"
         js_firstChild :: TreeWalker -> IO (Nullable Node)
@@ -82,7 +82,7 @@ firstChildUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker.firstChild Mozilla TreeWalker.firstChild documentation> 
 firstChildUnchecked :: (MonadIO m) => TreeWalker -> m Node
 firstChildUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_firstChild self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69611", fromJust)) Prelude.id) . nullableToMaybe <$> (js_firstChild self))
  
 foreign import javascript unsafe "$1[\"lastChild\"]()" js_lastChild
         :: TreeWalker -> IO (Nullable Node)
@@ -106,7 +106,7 @@ lastChildUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker.lastChild Mozilla TreeWalker.lastChild documentation> 
 lastChildUnchecked :: (MonadIO m) => TreeWalker -> m Node
 lastChildUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_lastChild self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69635", fromJust)) Prelude.id) . nullableToMaybe <$> (js_lastChild self))
  
 foreign import javascript unsafe "$1[\"previousSibling\"]()"
         js_previousSibling :: TreeWalker -> IO (Nullable Node)
@@ -131,7 +131,7 @@ previousSiblingUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker.previousSibling Mozilla TreeWalker.previousSibling documentation> 
 previousSiblingUnchecked :: (MonadIO m) => TreeWalker -> m Node
 previousSiblingUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_previousSibling self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69660", fromJust)) Prelude.id) . nullableToMaybe <$> (js_previousSibling self))
  
 foreign import javascript unsafe "$1[\"nextSibling\"]()"
         js_nextSibling :: TreeWalker -> IO (Nullable Node)
@@ -156,7 +156,7 @@ nextSiblingUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker.nextSibling Mozilla TreeWalker.nextSibling documentation> 
 nextSiblingUnchecked :: (MonadIO m) => TreeWalker -> m Node
 nextSiblingUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_nextSibling self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69685", fromJust)) Prelude.id) . nullableToMaybe <$> (js_nextSibling self))
  
 foreign import javascript unsafe "$1[\"previousNode\"]()"
         js_previousNode :: TreeWalker -> IO (Nullable Node)
@@ -181,7 +181,7 @@ previousNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker.previousNode Mozilla TreeWalker.previousNode documentation> 
 previousNodeUnchecked :: (MonadIO m) => TreeWalker -> m Node
 previousNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_previousNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69710", fromJust)) Prelude.id) . nullableToMaybe <$> (js_previousNode self))
  
 foreign import javascript unsafe "$1[\"nextNode\"]()" js_nextNode
         :: TreeWalker -> IO (Nullable Node)
@@ -204,7 +204,7 @@ nextNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker.nextNode Mozilla TreeWalker.nextNode documentation> 
 nextNodeUnchecked :: (MonadIO m) => TreeWalker -> m Node
 nextNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_nextNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69733", fromJust)) Prelude.id) . nullableToMaybe <$> (js_nextNode self))
  
 foreign import javascript unsafe "$1[\"root\"]" js_getRoot ::
         TreeWalker -> IO Node

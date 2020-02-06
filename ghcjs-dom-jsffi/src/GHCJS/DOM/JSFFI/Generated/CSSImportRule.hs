@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.CSSImportRule
         gTypeCSSImportRule)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -49,7 +49,7 @@ getHrefUnsafe self
 getHrefUnchecked ::
                  (MonadIO m, FromJSString result) => CSSImportRule -> m result
 getHrefUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getHref self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49963", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getHref self))
  
 foreign import javascript unsafe "$1[\"media\"]" js_getMedia ::
         CSSImportRule -> IO MediaList

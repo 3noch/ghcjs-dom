@@ -13,7 +13,7 @@ module GHCJS.DOM.JSFFI.Generated.NonDocumentTypeChildNode
         toNonDocumentTypeChildNode)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -59,7 +59,7 @@ getPreviousElementSiblingUnchecked ::
                                    (MonadIO m, IsNonDocumentTypeChildNode self) => self -> m Element
 getPreviousElementSiblingUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65956", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getPreviousElementSibling (toNonDocumentTypeChildNode self)))
  
 foreign import javascript unsafe "$1[\"nextElementSibling\"]"
@@ -90,5 +90,5 @@ getNextElementSiblingUnchecked ::
                                (MonadIO m, IsNonDocumentTypeChildNode self) => self -> m Element
 getNextElementSiblingUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65987", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getNextElementSibling (toNonDocumentTypeChildNode self)))

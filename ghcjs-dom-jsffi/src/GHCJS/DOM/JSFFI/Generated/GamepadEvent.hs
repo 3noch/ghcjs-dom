@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.GamepadEvent
         gTypeGamepadEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -56,4 +56,4 @@ getGamepadUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/GamepadEvent.gamepad Mozilla GamepadEvent.gamepad documentation> 
 getGamepadUnchecked :: (MonadIO m) => GamepadEvent -> m Gamepad
 getGamepadUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getGamepad self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 57050", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getGamepad self))

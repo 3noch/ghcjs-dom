@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.CSSPageRule
         js_getStyle, getStyle, CSSPageRule(..), gTypeCSSPageRule)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -59,7 +59,7 @@ getSelectorTextUnchecked ::
                          (MonadIO m, FromJSString result) => CSSPageRule -> m result
 getSelectorTextUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getSelectorText self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 50163", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getSelectorText self))
  
 foreign import javascript unsafe "$1[\"style\"]" js_getStyle ::
         CSSPageRule -> IO CSSStyleDeclaration

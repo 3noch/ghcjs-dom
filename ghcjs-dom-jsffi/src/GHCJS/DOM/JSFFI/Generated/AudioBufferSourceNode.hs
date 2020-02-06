@@ -16,7 +16,7 @@ module GHCJS.DOM.JSFFI.Generated.AudioBufferSourceNode
         gTypeAudioBufferSourceNode)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -91,7 +91,7 @@ getBufferUnsafe self
 getBufferUnchecked ::
                    (MonadIO m) => AudioBufferSourceNode -> m AudioBuffer
 getBufferUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getBuffer self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49750", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getBuffer self))
  
 foreign import javascript unsafe "$1[\"playbackState\"]"
         js_getPlaybackState :: AudioBufferSourceNode -> IO Word

@@ -21,7 +21,7 @@ module GHCJS.DOM.JSFFI.Generated.RTCDataChannel
         RTCDataChannel(..), gTypeRTCDataChannel)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -118,7 +118,7 @@ getMaxPacketLifeTimeUnchecked ::
                               (MonadIO m) => RTCDataChannel -> m Word
 getMaxPacketLifeTimeUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getMaxPacketLifeTime self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66848", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getMaxPacketLifeTime self))
  
 foreign import javascript unsafe "$1[\"maxRetransmits\"]"
         js_getMaxRetransmits :: RTCDataChannel -> IO (Nullable Word)
@@ -142,7 +142,7 @@ getMaxRetransmitsUnchecked ::
                            (MonadIO m) => RTCDataChannel -> m Word
 getMaxRetransmitsUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getMaxRetransmits self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66872", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getMaxRetransmits self))
  
 foreign import javascript unsafe "$1[\"protocol\"]" js_getProtocol
         :: RTCDataChannel -> IO JSString
@@ -177,7 +177,7 @@ getIdUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel.id Mozilla RTCDataChannel.id documentation> 
 getIdUnchecked :: (MonadIO m) => RTCDataChannel -> m Word
 getIdUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getId self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66907", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getId self))
  
 foreign import javascript unsafe "$1[\"readyState\"]"
         js_getReadyState :: RTCDataChannel -> IO JSVal

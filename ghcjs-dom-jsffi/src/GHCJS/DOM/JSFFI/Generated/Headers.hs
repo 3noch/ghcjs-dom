@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.Headers
         Headers(..), gTypeHeaders)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -73,7 +73,7 @@ getUnchecked ::
                Headers -> name -> m result
 getUnchecked self name
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_get self (toJSString name)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 62243", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_get self (toJSString name)))
  
 foreign import javascript safe "($1[\"has\"]($2) ? 1 : 0)" js_has
         :: Headers -> JSString -> IO Bool

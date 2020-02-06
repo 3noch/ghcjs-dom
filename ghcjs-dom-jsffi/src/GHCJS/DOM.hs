@@ -34,11 +34,11 @@ foreign import javascript unsafe "$r = document"
 currentWindow :: MonadDOM m => m (Maybe Window)
 currentWindow = liftDOM $ nullableToMaybe <$> ghcjs_currentWindow
 currentWindowUnchecked :: MonadDOM m => m Window
-currentWindowUnchecked = liftDOM $ fromJust <$> currentWindow
+currentWindowUnchecked = liftDOM $ (Prelude.maybe (Prelude.fst (Prelude.error "We found it 76806", fromJust)) Prelude.id) <$> currentWindow
 currentDocument :: MonadDOM m => m (Maybe Document)
 currentDocument = liftDOM $ nullableToMaybe <$> ghcjs_currentDocument
 currentDocumentUnchecked :: MonadDOM m => m Document
-currentDocumentUnchecked = liftDOM $ fromJust <$> currentDocument
+currentDocumentUnchecked = liftDOM $ (Prelude.maybe (Prelude.fst (Prelude.error "We found it 76810", fromJust)) Prelude.id) <$> currentDocument
 
 syncPoint :: IO ()
 syncPoint = return ()

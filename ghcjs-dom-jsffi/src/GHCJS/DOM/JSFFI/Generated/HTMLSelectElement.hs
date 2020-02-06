@@ -26,7 +26,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLSelectElement
         getAutocomplete, HTMLSelectElement(..), gTypeHTMLSelectElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -70,7 +70,7 @@ itemUnsafe self index
 itemUnchecked ::
               (MonadIO m) => HTMLSelectElement -> Word -> m HTMLOptionElement
 itemUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61448", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item self index))
  
 foreign import javascript unsafe "$1[\"namedItem\"]($2)"
         js_namedItem ::
@@ -105,7 +105,7 @@ namedItemUnchecked ::
                      HTMLSelectElement -> name -> m HTMLOptionElement
 namedItemUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61483", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_namedItem self (toJSString name)))
  
 foreign import javascript safe "$1[\"add\"]($2, $3)" js_addBefore
@@ -221,7 +221,7 @@ getFormUnsafe self
 getFormUnchecked ::
                  (MonadIO m) => HTMLSelectElement -> m HTMLFormElement
 getFormUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getForm self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61599", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getForm self))
  
 foreign import javascript unsafe "$1[\"multiple\"] = $2;"
         js_setMultiple :: HTMLSelectElement -> Bool -> IO ()

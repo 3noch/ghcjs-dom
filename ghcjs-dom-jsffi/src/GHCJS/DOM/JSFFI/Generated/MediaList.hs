@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.MediaList
         getLength, MediaList(..), gTypeMediaList)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -55,7 +55,7 @@ itemUnsafe self index
 itemUnchecked ::
               (MonadIO m, FromJSString result) => MediaList -> Word -> m result
 itemUnchecked self index
-  = liftIO (fromJust . fromMaybeJSString <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63734", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_item self index))
  
 foreign import javascript safe "$1[\"deleteMedium\"]($2)"
         js_deleteMedium :: MediaList -> JSString -> IO ()

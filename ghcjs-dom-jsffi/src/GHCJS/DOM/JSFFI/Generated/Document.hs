@@ -97,7 +97,7 @@ module GHCJS.DOM.JSFFI.Generated.Document
         gTypeDocument, IsDocument, toDocument)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -706,7 +706,7 @@ getSelectionUnchecked ::
                       (MonadIO m, IsDocument self) => self -> m Selection
 getSelectionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53913", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getSelection (toDocument self)))
  
 foreign import javascript safe "$1[\"createExpression\"]($2, $3)"
@@ -1134,7 +1134,7 @@ getDoctypeUnchecked ::
                     (MonadIO m, IsDocument self) => self -> m DocumentType
 getDoctypeUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getDoctype (toDocument self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54341", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getDoctype (toDocument self)))
  
 foreign import javascript unsafe "$1[\"documentElement\"]"
         js_getDocumentElement :: Document -> IO (Nullable Element)
@@ -1159,7 +1159,7 @@ getDocumentElementUnchecked ::
                             (MonadIO m, IsDocument self) => self -> m Element
 getDocumentElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54366", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getDocumentElement (toDocument self)))
  
 foreign import javascript unsafe "$1[\"location\"]" js_getLocation
@@ -1184,7 +1184,7 @@ getLocationUnchecked ::
                      (MonadIO m, IsDocument self) => self -> m Location
 getLocationUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getLocation (toDocument self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54391", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getLocation (toDocument self)))
  
 foreign import javascript safe "$1[\"domain\"] = $2;" js_setDomain
         :: Document -> JSString -> IO ()
@@ -1326,7 +1326,7 @@ getBodyUnchecked ::
                  (MonadIO m, IsDocument self) => self -> m HTMLElement
 getBodyUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getBody (toDocument self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54533", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getBody (toDocument self)))
  
 foreign import javascript unsafe "$1[\"head\"]" js_getHead ::
         Document -> IO (Nullable HTMLHeadElement)
@@ -1351,7 +1351,7 @@ getHeadUnchecked ::
                  (MonadIO m, IsDocument self) => self -> m HTMLHeadElement
 getHeadUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getHead (toDocument self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54558", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getHead (toDocument self)))
  
 foreign import javascript unsafe "$1[\"images\"]" js_getImages ::
         Document -> IO HTMLCollection
@@ -1425,7 +1425,7 @@ getCurrentScriptUnchecked ::
                           (MonadIO m, IsDocument self) => self -> m HTMLScriptElement
 getCurrentScriptUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54632", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getCurrentScript (toDocument self)))
  
 foreign import javascript unsafe "$1[\"defaultView\"]"
@@ -1451,7 +1451,7 @@ getDefaultViewUnchecked ::
                         (MonadIO m, IsDocument self) => self -> m Window
 getDefaultViewUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54658", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getDefaultView (toDocument self)))
  
 foreign import javascript unsafe "$1[\"designMode\"] = $2;"
@@ -1510,7 +1510,7 @@ getScrollingElementUnchecked ::
                              (MonadIO m, IsDocument self) => self -> m Element
 getScrollingElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54717", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getScrollingElement (toDocument self)))
  
 foreign import javascript unsafe
@@ -1548,7 +1548,7 @@ getWebkitFullscreenElementUnchecked ::
                                     (MonadIO m, IsDocument self) => self -> m Element
 getWebkitFullscreenElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54755", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getWebkitFullscreenElement (toDocument self)))
  
 foreign import javascript unsafe
@@ -1678,7 +1678,7 @@ getPreferredStylesheetSetUnchecked ::
                                      self -> m result
 getPreferredStylesheetSetUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54885", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getPreferredStylesheetSet (toDocument self)))
  
 foreign import javascript unsafe
@@ -1722,7 +1722,7 @@ getSelectedStylesheetSetUnchecked ::
                                     self -> m result
 getSelectedStylesheetSetUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54929", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getSelectedStylesheetSet (toDocument self)))
  
 foreign import javascript unsafe "$1[\"xmlEncoding\"]"
@@ -1751,7 +1751,7 @@ getXmlEncodingUnchecked ::
                           self -> m result
 getXmlEncodingUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54958", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getXmlEncoding (toDocument self)))
  
 foreign import javascript safe "$1[\"xmlVersion\"] = $2;"
@@ -1791,7 +1791,7 @@ getXmlVersionUnchecked ::
                          self -> m result
 getXmlVersionUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 54998", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getXmlVersion (toDocument self)))
  
 foreign import javascript unsafe "$1[\"xmlStandalone\"] = $2;"
@@ -1846,5 +1846,5 @@ getRootElementUnchecked ::
                         (MonadIO m, IsDocument self) => self -> m SVGSVGElement
 getRootElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55053", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getRootElement (toDocument self)))

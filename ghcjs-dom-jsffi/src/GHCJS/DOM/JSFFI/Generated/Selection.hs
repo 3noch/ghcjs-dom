@@ -24,7 +24,7 @@ module GHCJS.DOM.JSFFI.Generated.Selection
         Selection(..), gTypeSelection)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -220,7 +220,7 @@ getAnchorNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Selection.anchorNode Mozilla Selection.anchorNode documentation> 
 getAnchorNodeUnchecked :: (MonadIO m) => Selection -> m Node
 getAnchorNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getAnchorNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68376", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAnchorNode self))
  
 foreign import javascript unsafe "$1[\"anchorOffset\"]"
         js_getAnchorOffset :: Selection -> IO Word
@@ -248,7 +248,7 @@ getFocusNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Selection.focusNode Mozilla Selection.focusNode documentation> 
 getFocusNodeUnchecked :: (MonadIO m) => Selection -> m Node
 getFocusNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getFocusNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68404", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getFocusNode self))
  
 foreign import javascript unsafe "$1[\"focusOffset\"]"
         js_getFocusOffset :: Selection -> IO Word
@@ -298,7 +298,7 @@ getBaseNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Selection.baseNode Mozilla Selection.baseNode documentation> 
 getBaseNodeUnchecked :: (MonadIO m) => Selection -> m Node
 getBaseNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getBaseNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68454", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getBaseNode self))
  
 foreign import javascript unsafe "$1[\"baseOffset\"]"
         js_getBaseOffset :: Selection -> IO Word
@@ -326,7 +326,7 @@ getExtentNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Selection.extentNode Mozilla Selection.extentNode documentation> 
 getExtentNodeUnchecked :: (MonadIO m) => Selection -> m Node
 getExtentNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getExtentNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68482", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getExtentNode self))
  
 foreign import javascript unsafe "$1[\"extentOffset\"]"
         js_getExtentOffset :: Selection -> IO Word

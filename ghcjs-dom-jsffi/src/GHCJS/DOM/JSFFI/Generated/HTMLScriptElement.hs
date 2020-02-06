@@ -18,7 +18,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLScriptElement
         gTypeHTMLScriptElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -195,7 +195,7 @@ getCrossOriginUnchecked ::
                         (MonadIO m, FromJSString result) => HTMLScriptElement -> m result
 getCrossOriginUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getCrossOrigin self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61327", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getCrossOrigin self))
  
 foreign import javascript unsafe "$1[\"nonce\"] = $2;" js_setNonce
         :: HTMLScriptElement -> JSString -> IO ()

@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.Storage
         getLength, Storage(..), gTypeStorage)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -54,7 +54,7 @@ keyUnsafe self index
 keyUnchecked ::
              (MonadIO m, FromJSString result) => Storage -> Word -> m result
 keyUnchecked self index
-  = liftIO (fromJust . fromMaybeJSString <$> (js_key self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68788", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_key self index))
  
 foreign import javascript safe "$1[$2]" js_getItem ::
         Storage -> JSString -> IO (Nullable JSString)
@@ -86,7 +86,7 @@ getItemUnchecked ::
                    Storage -> key -> m result
 getItemUnchecked self key
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68820", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getItem self (toJSString key)))
  
 foreign import javascript safe "$1[\"setItem\"]($2, $3)" js_setItem

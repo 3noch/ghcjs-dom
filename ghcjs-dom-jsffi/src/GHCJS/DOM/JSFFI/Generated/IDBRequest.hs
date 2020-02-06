@@ -12,7 +12,7 @@ module GHCJS.DOM.JSFFI.Generated.IDBRequest
         toIDBRequest)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -54,7 +54,7 @@ getResultUnchecked ::
                    (MonadIO m, IsIDBRequest self) => self -> m IDBRequestResult
 getResultUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getResult (toIDBRequest self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63211", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getResult (toIDBRequest self)))
  
 foreign import javascript safe "$1[\"error\"]" js_getError ::
         IDBRequest -> IO (Nullable DOMError)
@@ -78,7 +78,7 @@ getErrorUnchecked ::
                   (MonadIO m, IsIDBRequest self) => self -> m DOMError
 getErrorUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getError (toIDBRequest self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63235", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getError (toIDBRequest self)))
  
 foreign import javascript unsafe "$1[\"source\"]" js_getSource ::
         IDBRequest -> IO (Nullable IDBRequestSource)
@@ -104,7 +104,7 @@ getSourceUnchecked ::
                    (MonadIO m, IsIDBRequest self) => self -> m IDBRequestSource
 getSourceUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getSource (toIDBRequest self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63261", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getSource (toIDBRequest self)))
  
 foreign import javascript unsafe "$1[\"transaction\"]"
         js_getTransaction :: IDBRequest -> IO IDBTransaction

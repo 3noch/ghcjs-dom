@@ -15,7 +15,7 @@ module GHCJS.DOM.JSFFI.Generated.Response
         gTypeResponse)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -203,7 +203,7 @@ getBodyUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Response.body Mozilla Response.body documentation> 
 getBodyUnchecked :: (MonadIO m) => Response -> m ReadableStream
 getBodyUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getBody self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68146", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getBody self))
  
 foreign import javascript unsafe "($1[\"bodyUsed\"] ? 1 : 0)"
         js_getBodyUsed :: Response -> IO Bool

@@ -56,7 +56,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLMediaElement
         toHTMLMediaElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -304,7 +304,7 @@ getSrcObjectUnchecked ::
                       (MonadIO m, IsHTMLMediaElement self) => self -> m MediaProvider
 getSrcObjectUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 60402", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getSrcObject (toHTMLMediaElement self)))
  
 foreign import javascript unsafe "$1[\"currentSrc\"]"
@@ -359,7 +359,7 @@ getCrossOriginUnchecked ::
                           self -> m result
 getCrossOriginUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 60457", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getCrossOrigin (toHTMLMediaElement self)))
  
 foreign import javascript unsafe "$1[\"networkState\"]"
@@ -808,7 +808,7 @@ getControllerUnchecked ::
                        (MonadIO m, IsHTMLMediaElement self) => self -> m MediaController
 getControllerUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 60906", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getController (toHTMLMediaElement self)))
  
 foreign import javascript unsafe
@@ -880,5 +880,5 @@ getSessionUnchecked ::
                     (MonadIO m, IsHTMLMediaElement self) => self -> m MediaSession
 getSessionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 60978", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getSession (toHTMLMediaElement self)))

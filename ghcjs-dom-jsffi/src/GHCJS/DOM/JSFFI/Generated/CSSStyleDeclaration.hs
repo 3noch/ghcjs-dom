@@ -21,7 +21,7 @@ module GHCJS.DOM.JSFFI.Generated.CSSStyleDeclaration
         gTypeCSSStyleDeclaration)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -97,7 +97,7 @@ getPropertyCSSValueUnchecked ::
                                CSSStyleDeclaration -> propertyName -> m CSSValue
 getPropertyCSSValueUnchecked self propertyName
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 50419", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getPropertyCSSValue self (toJSString propertyName)))
  
 foreign import javascript safe "$1[\"removeProperty\"]($2)"
@@ -157,7 +157,7 @@ getPropertyPriorityUnchecked ::
                                CSSStyleDeclaration -> propertyName -> m result
 getPropertyPriorityUnchecked self propertyName
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 50479", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getPropertyPriority self (toJSString propertyName)))
  
 foreign import javascript safe "$1[\"setProperty\"]($2, $3, $4)"
@@ -228,7 +228,7 @@ getPropertyShorthandUnchecked ::
                                 CSSStyleDeclaration -> Maybe propertyName -> m result
 getPropertyShorthandUnchecked self propertyName
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 50550", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getPropertyShorthand self (toOptionalJSString propertyName)))
  
 foreign import javascript unsafe
@@ -296,4 +296,4 @@ getParentRuleUnsafe self
 getParentRuleUnchecked ::
                        (MonadIO m) => CSSStyleDeclaration -> m CSSRule
 getParentRuleUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getParentRule self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 50618", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getParentRule self))

@@ -13,7 +13,7 @@ module GHCJS.DOM.JSFFI.Generated.Attr
         gTypeAttr)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -53,7 +53,7 @@ getNamespaceURIUnchecked ::
                          (MonadIO m, FromJSString result) => Attr -> m result
 getNamespaceURIUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getNamespaceURI self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49576", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getNamespaceURI self))
  
 foreign import javascript unsafe "$1[\"prefix\"]" js_getPrefix ::
         Attr -> IO (Nullable JSString)
@@ -75,7 +75,7 @@ getPrefixUnsafe self
 getPrefixUnchecked ::
                    (MonadIO m, FromJSString result) => Attr -> m result
 getPrefixUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getPrefix self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49598", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getPrefix self))
  
 foreign import javascript unsafe "$1[\"localName\"]"
         js_getLocalName :: Attr -> IO JSString
@@ -126,7 +126,7 @@ getOwnerElementUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Attr.ownerElement Mozilla Attr.ownerElement documentation> 
 getOwnerElementUnchecked :: (MonadIO m) => Attr -> m Element
 getOwnerElementUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getOwnerElement self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49649", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getOwnerElement self))
  
 foreign import javascript unsafe "($1[\"specified\"] ? 1 : 0)"
         js_getSpecified :: Attr -> IO Bool

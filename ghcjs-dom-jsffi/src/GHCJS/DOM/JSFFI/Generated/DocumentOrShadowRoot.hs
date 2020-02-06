@@ -14,7 +14,7 @@ module GHCJS.DOM.JSFFI.Generated.DocumentOrShadowRoot
         toDocumentOrShadowRoot)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -69,7 +69,7 @@ elementFromPointUnchecked ::
                             self -> Double -> Double -> m Element
 elementFromPointUnchecked self x y
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55126", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_elementFromPoint (toDocumentOrShadowRoot self) x y))
  
 foreign import javascript unsafe "$1[\"activeElement\"]"
@@ -100,7 +100,7 @@ getActiveElementUnchecked ::
                           (MonadIO m, IsDocumentOrShadowRoot self) => self -> m Element
 getActiveElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55157", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getActiveElement (toDocumentOrShadowRoot self)))
  
 foreign import javascript unsafe "$1[\"pointerLockElement\"]"
@@ -131,5 +131,5 @@ getPointerLockElementUnchecked ::
                                (MonadIO m, IsDocumentOrShadowRoot self) => self -> m Element
 getPointerLockElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55188", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getPointerLockElement (toDocumentOrShadowRoot self)))

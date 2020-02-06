@@ -14,7 +14,7 @@ module GHCJS.DOM.JSFFI.Generated.SpeechSynthesisUtterance
         gTypeSpeechSynthesisUtterance)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -112,7 +112,7 @@ getVoiceUnsafe self
 getVoiceUnchecked ::
                   (MonadIO m) => SpeechSynthesisUtterance -> m SpeechSynthesisVoice
 getVoiceUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getVoice self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68659", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getVoice self))
  
 foreign import javascript unsafe "$1[\"volume\"] = $2;"
         js_setVolume :: SpeechSynthesisUtterance -> Float -> IO ()

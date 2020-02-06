@@ -17,7 +17,7 @@ module GHCJS.DOM.JSFFI.Generated.TextTrack
         TextTrack(..), gTypeTextTrack)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -157,7 +157,7 @@ getCuesUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TextTrack.cues Mozilla TextTrack.cues documentation> 
 getCuesUnchecked :: (MonadIO m) => TextTrack -> m TextTrackCueList
 getCuesUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getCues self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69425", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getCues self))
  
 foreign import javascript unsafe "$1[\"activeCues\"]"
         js_getActiveCues :: TextTrack -> IO (Nullable TextTrackCueList)
@@ -180,7 +180,7 @@ getActiveCuesUnsafe self
 getActiveCuesUnchecked ::
                        (MonadIO m) => TextTrack -> m TextTrackCueList
 getActiveCuesUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getActiveCues self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69448", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getActiveCues self))
 
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TextTrack.oncuechange Mozilla TextTrack.oncuechange documentation> 
 cueChange :: EventName TextTrack Event

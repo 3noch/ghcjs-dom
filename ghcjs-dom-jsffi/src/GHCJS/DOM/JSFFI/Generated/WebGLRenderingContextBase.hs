@@ -243,7 +243,7 @@ module GHCJS.DOM.JSFFI.Generated.WebGLRenderingContextBase
         IsWebGLRenderingContextBase, toWebGLRenderingContextBase)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -1227,7 +1227,7 @@ getContextAttributesUnchecked ::
                                 self -> m WebGLContextAttributes
 getContextAttributesUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 71310", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getContextAttributes (toWebGLRenderingContextBase self)))
  
 foreign import javascript unsafe "$1[\"getError\"]()" js_getError
@@ -1308,7 +1308,7 @@ getExtensionUnchecked ::
                         self -> name -> m GObject
 getExtensionUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 71391", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getExtension (toWebGLRenderingContextBase self)
             (toJSString name)))
  
@@ -1431,7 +1431,7 @@ getProgramInfoLogUnchecked ::
                              self -> Maybe WebGLProgram -> m result
 getProgramInfoLogUnchecked self program
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 71514", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getProgramInfoLog (toWebGLRenderingContextBase self)
             (maybeToOptional program)))
  
@@ -1532,7 +1532,7 @@ getShaderInfoLogUnchecked ::
                             self -> Maybe WebGLShader -> m result
 getShaderInfoLogUnchecked self shader
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 71615", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getShaderInfoLog (toWebGLRenderingContextBase self)
             (maybeToOptional shader)))
  
@@ -1608,7 +1608,7 @@ getShaderSourceUnchecked ::
                            self -> Maybe WebGLShader -> m result
 getShaderSourceUnchecked self shader
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 71691", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getShaderSource (toWebGLRenderingContextBase self)
             (maybeToOptional shader)))
  

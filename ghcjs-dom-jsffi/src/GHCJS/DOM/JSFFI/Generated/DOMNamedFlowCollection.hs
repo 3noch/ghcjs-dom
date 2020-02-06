@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.DOMNamedFlowCollection
         gTypeDOMNamedFlowCollection)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -54,7 +54,7 @@ itemUnsafe self index
 itemUnchecked ::
               (MonadIO m) => DOMNamedFlowCollection -> Word -> m WebKitNamedFlow
 itemUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52532", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item self index))
  
 foreign import javascript unsafe "$1[$2]" js_namedItem ::
         DOMNamedFlowCollection -> JSString -> IO (Nullable WebKitNamedFlow)
@@ -89,7 +89,7 @@ namedItemUnchecked ::
                      DOMNamedFlowCollection -> name -> m WebKitNamedFlow
 namedItemUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52567", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_namedItem self (toJSString name)))
  
 foreign import javascript unsafe "$1[\"length\"]" js_getLength ::

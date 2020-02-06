@@ -16,7 +16,7 @@ module GHCJS.DOM.JSFFI.Generated.NamedNodeMap
         js_getLength, getLength, NamedNodeMap(..), gTypeNamedNodeMap)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -56,7 +56,7 @@ itemUnsafe self index
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap.item Mozilla NamedNodeMap.item documentation> 
 itemUnchecked :: (MonadIO m) => NamedNodeMap -> Word -> m Attr
 itemUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64847", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item self index))
  
 foreign import javascript unsafe "$1[$2]" js_getNamedItem ::
         NamedNodeMap -> JSString -> IO (Nullable Attr)
@@ -93,7 +93,7 @@ getNamedItemUnchecked ::
                         NamedNodeMap -> qualifiedName -> m Attr
 getNamedItemUnchecked self qualifiedName
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64884", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getNamedItem self (toJSString qualifiedName)))
  
 foreign import javascript unsafe "$1[\"getNamedItemNS\"]($2, $3)"
@@ -138,7 +138,7 @@ getNamedItemNSUnchecked ::
                           NamedNodeMap -> Maybe namespaceURI -> localName -> m Attr
 getNamedItemNSUnchecked self namespaceURI localName
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64929", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getNamedItemNS self (toOptionalJSString namespaceURI)
             (toJSString localName)))
  
@@ -168,7 +168,7 @@ setNamedItemUnchecked ::
                       (MonadIO m) => NamedNodeMap -> Attr -> m Attr
 setNamedItemUnchecked self attr
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_setNamedItem self attr))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64959", fromJust)) Prelude.id) . nullableToMaybe <$> (js_setNamedItem self attr))
  
 foreign import javascript safe "$1[\"setNamedItemNS\"]($2)"
         js_setNamedItemNS :: NamedNodeMap -> Attr -> IO (Nullable Attr)
@@ -197,7 +197,7 @@ setNamedItemNSUnchecked ::
                         (MonadIO m) => NamedNodeMap -> Attr -> m Attr
 setNamedItemNSUnchecked self attr
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_setNamedItemNS self attr))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64988", fromJust)) Prelude.id) . nullableToMaybe <$> (js_setNamedItemNS self attr))
  
 foreign import javascript safe "$1[\"removeNamedItem\"]($2)"
         js_removeNamedItem :: NamedNodeMap -> JSString -> IO Attr

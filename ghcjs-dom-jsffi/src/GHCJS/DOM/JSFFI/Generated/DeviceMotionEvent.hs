@@ -16,7 +16,7 @@ module GHCJS.DOM.JSFFI.Generated.DeviceMotionEvent
         gTypeDeviceMotionEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -86,7 +86,7 @@ getAccelerationUnsafe self
 getAccelerationUnchecked ::
                          (MonadIO m) => DeviceMotionEvent -> m Acceleration
 getAccelerationUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getAcceleration self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52979", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAcceleration self))
  
 foreign import javascript unsafe
         "$1[\"accelerationIncludingGravity\"]"
@@ -114,7 +114,7 @@ getAccelerationIncludingGravityUnchecked ::
                                          (MonadIO m) => DeviceMotionEvent -> m Acceleration
 getAccelerationIncludingGravityUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53007", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getAccelerationIncludingGravity self))
  
 foreign import javascript unsafe "$1[\"rotationRate\"]"
@@ -139,7 +139,7 @@ getRotationRateUnsafe self
 getRotationRateUnchecked ::
                          (MonadIO m) => DeviceMotionEvent -> m RotationRate
 getRotationRateUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getRotationRate self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53032", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getRotationRate self))
  
 foreign import javascript unsafe "$1[\"interval\"]" js_getInterval
         :: DeviceMotionEvent -> IO (Nullable Double)
@@ -161,4 +161,4 @@ getIntervalUnsafe self
 getIntervalUnchecked ::
                      (MonadIO m) => DeviceMotionEvent -> m Double
 getIntervalUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getInterval self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53054", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getInterval self))

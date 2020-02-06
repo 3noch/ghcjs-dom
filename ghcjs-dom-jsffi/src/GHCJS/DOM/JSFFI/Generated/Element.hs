@@ -70,7 +70,7 @@ module GHCJS.DOM.JSFFI.Generated.Element
         IsElement, toElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -157,7 +157,7 @@ getAttributeUnchecked ::
                         self -> qualifiedName -> m result
 getAttributeUnchecked self qualifiedName
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55349", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getAttribute (toElement self) (toJSString qualifiedName)))
  
 foreign import javascript unsafe "$1[\"getAttributeNS\"]($2, $3)"
@@ -208,7 +208,7 @@ getAttributeNSUnchecked ::
                           self -> Maybe namespaceURI -> localName -> m result
 getAttributeNSUnchecked self namespaceURI localName
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55400", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getAttributeNS (toElement self)
             (toOptionalJSString namespaceURI)
             (toJSString localName)))
@@ -354,7 +354,7 @@ getAttributeNodeUnchecked ::
                             self -> qualifiedName -> m Attr
 getAttributeNodeUnchecked self qualifiedName
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55546", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getAttributeNode (toElement self) (toJSString qualifiedName)))
  
 foreign import javascript unsafe
@@ -405,7 +405,7 @@ getAttributeNodeNSUnchecked ::
                               self -> Maybe namespaceURI -> localName -> m Attr
 getAttributeNodeNSUnchecked self namespaceURI localName
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55597", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getAttributeNodeNS (toElement self)
             (toOptionalJSString namespaceURI)
             (toJSString localName)))
@@ -439,7 +439,7 @@ setAttributeNodeUnchecked ::
                           (MonadIO m, IsElement self) => self -> Attr -> m Attr
 setAttributeNodeUnchecked self attr
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55631", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_setAttributeNode (toElement self) attr))
  
 foreign import javascript safe "$1[\"setAttributeNodeNS\"]($2)"
@@ -472,7 +472,7 @@ setAttributeNodeNSUnchecked ::
                             (MonadIO m, IsElement self) => self -> Attr -> m Attr
 setAttributeNodeNSUnchecked self attr
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55664", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_setAttributeNodeNS (toElement self) attr))
  
 foreign import javascript safe "$1[\"removeAttributeNode\"]($2)"
@@ -542,7 +542,7 @@ closestUnchecked ::
                    self -> selectors -> m Element
 closestUnchecked self selectors
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55734", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_closest (toElement self) (toJSString selectors)))
  
 foreign import javascript safe "($1[\"matches\"]($2) ? 1 : 0)"
@@ -699,7 +699,7 @@ insertAdjacentElementUnchecked ::
                                  self -> where' -> element -> m Element
 insertAdjacentElementUnchecked self where' element
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 55891", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_insertAdjacentElement (toElement self) (toJSString where')
             (toElement element)))
  
@@ -905,7 +905,7 @@ getNamespaceURIUnchecked ::
                            self -> m result
 getNamespaceURIUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 56097", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getNamespaceURI (toElement self)))
  
 foreign import javascript unsafe "$1[\"prefix\"]" js_getPrefix ::
@@ -933,7 +933,7 @@ getPrefixUnchecked ::
                      self -> m result
 getPrefixUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getPrefix (toElement self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 56125", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getPrefix (toElement self)))
  
 foreign import javascript unsafe "$1[\"localName\"]"
         js_getLocalName :: Element -> IO JSString
@@ -1049,7 +1049,7 @@ getShadowRootUnchecked ::
                        (MonadIO m, IsElement self) => self -> m ShadowRoot
 getShadowRootUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 56241", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getShadowRoot (toElement self)))
  
 foreign import javascript unsafe "$1[\"scrollTop\"] = $2;"

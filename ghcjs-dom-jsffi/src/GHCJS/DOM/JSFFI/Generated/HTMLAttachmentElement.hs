@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLAttachmentElement
         gTypeHTMLAttachmentElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -53,4 +53,4 @@ getFileUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/HTMLAttachmentElement.file Mozilla HTMLAttachmentElement.file documentation> 
 getFileUnchecked :: (MonadIO m) => HTMLAttachmentElement -> m File
 getFileUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getFile self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 57204", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getFile self))

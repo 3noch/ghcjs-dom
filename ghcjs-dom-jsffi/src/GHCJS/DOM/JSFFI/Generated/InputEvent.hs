@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.InputEvent
         getDataTransferUnchecked, InputEvent(..), gTypeInputEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -84,7 +84,7 @@ getDataUnsafe self
 getDataUnchecked ::
                  (MonadIO m, FromJSString result) => InputEvent -> m result
 getDataUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getData self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63452", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getData self))
  
 foreign import javascript unsafe "$1[\"dataTransfer\"]"
         js_getDataTransfer :: InputEvent -> IO (Nullable DataTransfer)
@@ -107,4 +107,4 @@ getDataTransferUnsafe self
 getDataTransferUnchecked ::
                          (MonadIO m) => InputEvent -> m DataTransfer
 getDataTransferUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getDataTransfer self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63475", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getDataTransfer self))

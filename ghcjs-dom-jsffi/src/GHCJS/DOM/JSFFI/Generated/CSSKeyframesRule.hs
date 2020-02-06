@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.CSSKeyframesRule
         CSSKeyframesRule(..), gTypeCSSKeyframesRule)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -86,7 +86,7 @@ findRuleUnchecked ::
                     CSSKeyframesRule -> key -> m CSSKeyframeRule
 findRuleUnchecked self key
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 50066", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_findRule self (toJSString key)))
  
 foreign import javascript unsafe "$1[$2]" js_get ::

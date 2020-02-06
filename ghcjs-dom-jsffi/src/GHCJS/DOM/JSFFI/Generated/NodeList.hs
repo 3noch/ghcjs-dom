@@ -8,7 +8,7 @@ module GHCJS.DOM.JSFFI.Generated.NodeList
         getLength, NodeList(..), gTypeNodeList, IsNodeList, toNodeList)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -53,7 +53,7 @@ itemUnchecked ::
               (MonadIO m, IsNodeList self) => self -> Word -> m Node
 itemUnchecked self index
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_item (toNodeList self) index))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65887", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item (toNodeList self) index))
  
 foreign import javascript unsafe "$1[\"length\"]" js_getLength ::
         NodeList -> IO Word

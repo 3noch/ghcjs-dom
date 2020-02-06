@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.Slotable
         toSlotable)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -51,5 +51,5 @@ getAssignedSlotUnchecked ::
                          (MonadIO m, IsSlotable self) => self -> m HTMLSlotElement
 getAssignedSlotUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68543", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getAssignedSlot (toSlotable self)))

@@ -20,7 +20,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLFrameElement
         gTypeHTMLFrameElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -245,4 +245,4 @@ getLocationUnsafe self
 getLocationUnchecked ::
                      (MonadIO m, FromJSString result) => HTMLFrameElement -> m result
 getLocationUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getLocation self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 58558", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getLocation self))

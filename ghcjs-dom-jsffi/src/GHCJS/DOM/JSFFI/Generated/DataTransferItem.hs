@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.DataTransferItem
         js_getType, getType, DataTransferItem(..), gTypeDataTransferItem)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -60,7 +60,7 @@ getAsFileUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem.getAsFile Mozilla DataTransferItem.getAsFile documentation> 
 getAsFileUnchecked :: (MonadIO m) => DataTransferItem -> m Blob
 getAsFileUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getAsFile self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52874", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAsFile self))
  
 foreign import javascript unsafe "$1[\"kind\"]" js_getKind ::
         DataTransferItem -> IO JSString

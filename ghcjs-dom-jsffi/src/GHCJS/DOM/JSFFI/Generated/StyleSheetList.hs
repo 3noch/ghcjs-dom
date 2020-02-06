@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.StyleSheetList
         gTypeStyleSheetList)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -51,7 +51,7 @@ itemUnsafe self index
 itemUnchecked ::
               (MonadIO m) => StyleSheetList -> Word -> m StyleSheet
 itemUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69244", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item self index))
  
 foreign import javascript unsafe "$1[$2]" js_get ::
         StyleSheetList -> JSString -> IO CSSStyleSheet

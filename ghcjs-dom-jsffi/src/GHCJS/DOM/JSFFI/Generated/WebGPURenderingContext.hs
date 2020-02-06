@@ -43,7 +43,7 @@ module GHCJS.DOM.JSFFI.Generated.WebGPURenderingContext
         gTypeWebGPURenderingContext)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -122,7 +122,7 @@ createRenderPipelineStateUnchecked ::
                                        WebGPURenderPipelineDescriptor -> m WebGPURenderPipelineState
 createRenderPipelineStateUnchecked self descriptor
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73786", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_createRenderPipelineState self descriptor))
  
 foreign import javascript unsafe
@@ -164,7 +164,7 @@ createDepthStencilStateUnchecked ::
                                      WebGPUDepthStencilDescriptor -> m WebGPUDepthStencilState
 createDepthStencilStateUnchecked self descriptor
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73828", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_createDepthStencilState self descriptor))
  
 foreign import javascript unsafe
@@ -206,7 +206,7 @@ createComputePipelineStateUnchecked ::
                                         WebGPUFunction -> m WebGPUComputePipelineState
 createComputePipelineStateUnchecked self function
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73870", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_createComputePipelineState self function))
  
 foreign import javascript unsafe "$1[\"createCommandQueue\"]()"
@@ -240,7 +240,7 @@ createCommandQueueUnchecked ::
                             (MonadIO m) => WebGPURenderingContext -> m WebGPUCommandQueue
 createCommandQueueUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_createCommandQueue self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73904", fromJust)) Prelude.id) . nullableToMaybe <$> (js_createCommandQueue self))
  
 foreign import javascript unsafe "$1[\"nextDrawable\"]()"
         js_nextDrawable ::
@@ -269,7 +269,7 @@ nextDrawableUnsafe self
 nextDrawableUnchecked ::
                       (MonadIO m) => WebGPURenderingContext -> m WebGPUDrawable
 nextDrawableUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_nextDrawable self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73933", fromJust)) Prelude.id) . nullableToMaybe <$> (js_nextDrawable self))
  
 foreign import javascript unsafe "$1[\"createBuffer\"]($2)"
         js_createBuffer ::
@@ -308,7 +308,7 @@ createBufferUnchecked ::
                         WebGPURenderingContext -> data' -> m WebGPUBuffer
 createBufferUnchecked self data'
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73972", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_createBuffer self (toArrayBufferView data')))
  
 foreign import javascript unsafe "$1[\"createTexture\"]($2)"
@@ -348,7 +348,7 @@ createTextureUnchecked ::
                            WebGPUTextureDescriptor -> m WebGPUTexture
 createTextureUnchecked self descriptor
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_createTexture self descriptor))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 74012", fromJust)) Prelude.id) . nullableToMaybe <$> (js_createTexture self descriptor))
 pattern PixelFormatBGRA8Unorm = 80
 pattern PixelFormatDepth32Float = 252
 pattern PixelFormatStencil8 = 253

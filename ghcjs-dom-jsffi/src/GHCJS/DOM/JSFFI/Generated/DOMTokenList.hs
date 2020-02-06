@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.DOMTokenList
         js_getValue, getValue, DOMTokenList(..), gTypeDOMTokenList)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -57,7 +57,7 @@ itemUnchecked ::
               (MonadIO m, FromJSString result) =>
                 DOMTokenList -> Word -> m result
 itemUnchecked self index
-  = liftIO (fromJust . fromMaybeJSString <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52715", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_item self index))
  
 foreign import javascript unsafe "($1[\"contains\"]($2) ? 1 : 0)"
         js_contains :: DOMTokenList -> JSString -> IO Bool

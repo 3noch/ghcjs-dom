@@ -58,7 +58,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLInputElement
         gTypeHTMLInputElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -324,7 +324,7 @@ getFilesUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement.files Mozilla HTMLInputElement.files documentation> 
 getFilesUnchecked :: (MonadIO m) => HTMLInputElement -> m FileList
 getFilesUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getFiles self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 59238", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getFiles self))
  
 foreign import javascript unsafe "$1[\"formAction\"] = $2;"
         js_setFormAction :: HTMLInputElement -> JSString -> IO ()
@@ -726,7 +726,7 @@ getValueAsDateUnsafe self
 getValueAsDateUnchecked ::
                         (MonadIO m) => HTMLInputElement -> m Date
 getValueAsDateUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getValueAsDate self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 59640", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getValueAsDate self))
  
 foreign import javascript safe "$1[\"valueAsNumber\"] = $2;"
         js_setValueAsNumber :: HTMLInputElement -> Double -> IO ()

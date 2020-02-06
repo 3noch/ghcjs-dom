@@ -23,7 +23,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLImageElement
         getX, js_getY, getY, HTMLImageElement(..), gTypeHTMLImageElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -139,7 +139,7 @@ getCrossOriginUnchecked ::
                         (MonadIO m, FromJSString result) => HTMLImageElement -> m result
 getCrossOriginUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getCrossOrigin self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 58700", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getCrossOrigin self))
  
 foreign import javascript unsafe "$1[\"height\"] = $2;"
         js_setHeight :: HTMLImageElement -> Word -> IO ()

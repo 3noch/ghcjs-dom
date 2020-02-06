@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.ApplePayError
         getMessage, ApplePayError(..), gTypeApplePayError)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -95,7 +95,7 @@ getContactFieldUnsafe self
 getContactFieldUnchecked ::
                          (MonadIO m) => ApplePayError -> m ApplePayErrorContactField
 getContactFieldUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getContactField self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49504", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getContactField self))
  
 foreign import javascript unsafe "$1[\"message\"] = $2;"
         js_setMessage :: ApplePayError -> JSString -> IO ()

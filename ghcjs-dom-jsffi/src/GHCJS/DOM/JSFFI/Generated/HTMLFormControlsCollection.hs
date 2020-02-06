@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLFormControlsCollection
         HTMLFormControlsCollection(..), gTypeHTMLFormControlsCollection)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -53,7 +53,7 @@ getUnsafe self index
 getUnchecked ::
              (MonadIO m) => HTMLFormControlsCollection -> Word -> m HTMLElement
 getUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_get self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 57966", fromJust)) Prelude.id) . nullableToMaybe <$> (js_get self index))
  
 foreign import javascript unsafe "$1[$2]" js_namedItem ::
         HTMLFormControlsCollection ->
@@ -90,5 +90,5 @@ namedItemUnchecked ::
                      HTMLFormControlsCollection -> name -> m RadioNodeListOrElement
 namedItemUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 58003", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_namedItem self (toJSString name)))

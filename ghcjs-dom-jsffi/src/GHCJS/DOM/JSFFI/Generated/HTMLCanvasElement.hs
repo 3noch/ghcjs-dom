@@ -12,7 +12,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLCanvasElement
         HTMLCanvasElement(..), gTypeHTMLCanvasElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -77,7 +77,7 @@ getContextUnchecked ::
                       HTMLCanvasElement -> contextId -> [arguments] -> m RenderingContext
 getContextUnchecked self contextId arguments
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 57284", fromJust)) Prelude.id) . nullableToMaybe <$>
          (toJSVal arguments >>=
             \ arguments' ->
               js_getContext self (toJSString contextId) arguments'))

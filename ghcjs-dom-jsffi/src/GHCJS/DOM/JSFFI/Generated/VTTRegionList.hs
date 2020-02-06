@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.VTTRegionList
         gTypeVTTRegionList)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -51,7 +51,7 @@ itemUnsafe self index
 itemUnchecked ::
               (MonadIO m) => VTTRegionList -> Word -> m VTTRegion
 itemUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69969", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item self index))
  
 foreign import javascript unsafe "$1[\"getRegionById\"]($2)"
         js_getRegionById ::
@@ -85,7 +85,7 @@ getRegionByIdUnchecked ::
                        (MonadIO m, ToJSString id) => VTTRegionList -> id -> m VTTRegion
 getRegionByIdUnchecked self id
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 70003", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getRegionById self (toJSString id)))
  
 foreign import javascript unsafe "$1[\"length\"]" js_getLength ::

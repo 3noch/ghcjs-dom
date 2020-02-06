@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.WebGLDebugShaders
         gTypeWebGLDebugShaders)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -65,5 +65,5 @@ getTranslatedShaderSourceUnchecked ::
                                      WebGLDebugShaders -> Maybe WebGLShader -> m result
 getTranslatedShaderSourceUnchecked self shader
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 70079", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getTranslatedShaderSource self (maybeToOptional shader)))

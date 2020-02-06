@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.WebGPUCommandQueue
         WebGPUCommandQueue(..), gTypeWebGPUCommandQueue)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -57,7 +57,7 @@ createCommandBufferUnchecked ::
                              (MonadIO m) => WebGPUCommandQueue -> m WebGPUCommandBuffer
 createCommandBufferUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_createCommandBuffer self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73252", fromJust)) Prelude.id) . nullableToMaybe <$> (js_createCommandBuffer self))
  
 foreign import javascript unsafe "$1[\"label\"] = $2;" js_setLabel
         :: WebGPUCommandQueue -> JSString -> IO ()

@@ -12,7 +12,7 @@ module GHCJS.DOM.JSFFI.Generated.DeviceOrientationEvent
         DeviceOrientationEvent(..), gTypeDeviceOrientationEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -80,7 +80,7 @@ getAlphaUnsafe self
 getAlphaUnchecked ::
                   (MonadIO m) => DeviceOrientationEvent -> m Double
 getAlphaUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getAlpha self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53137", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAlpha self))
  
 foreign import javascript unsafe "$1[\"beta\"]" js_getBeta ::
         DeviceOrientationEvent -> IO (Nullable Double)
@@ -102,7 +102,7 @@ getBetaUnsafe self
 getBetaUnchecked ::
                  (MonadIO m) => DeviceOrientationEvent -> m Double
 getBetaUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getBeta self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53159", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getBeta self))
  
 foreign import javascript unsafe "$1[\"gamma\"]" js_getGamma ::
         DeviceOrientationEvent -> IO (Nullable Double)
@@ -124,7 +124,7 @@ getGammaUnsafe self
 getGammaUnchecked ::
                   (MonadIO m) => DeviceOrientationEvent -> m Double
 getGammaUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getGamma self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53181", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getGamma self))
  
 foreign import javascript unsafe "$1[\"absolute\"]" js_getAbsolute
         :: DeviceOrientationEvent -> IO (Nullable Bool)
@@ -147,4 +147,4 @@ getAbsoluteUnsafe self
 getAbsoluteUnchecked ::
                      (MonadIO m) => DeviceOrientationEvent -> m Bool
 getAbsoluteUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getAbsolute self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 53204", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAbsolute self))

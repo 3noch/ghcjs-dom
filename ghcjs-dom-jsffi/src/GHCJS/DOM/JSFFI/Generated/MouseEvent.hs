@@ -23,7 +23,7 @@ module GHCJS.DOM.JSFFI.Generated.MouseEvent
         IsMouseEvent, toMouseEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -197,7 +197,7 @@ getRelatedTargetUnchecked ::
                           (MonadIO m, IsMouseEvent self) => self -> m EventTarget
 getRelatedTargetUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64349", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getRelatedTarget (toMouseEvent self)))
  
 foreign import javascript unsafe "$1[\"movementX\"]"
@@ -274,7 +274,7 @@ getFromElementUnchecked ::
                         (MonadIO m, IsMouseEvent self) => self -> m Node
 getFromElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64426", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getFromElement (toMouseEvent self)))
  
 foreign import javascript unsafe "$1[\"toElement\"]"
@@ -300,7 +300,7 @@ getToElementUnchecked ::
                       (MonadIO m, IsMouseEvent self) => self -> m Node
 getToElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64452", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getToElement (toMouseEvent self)))
  
 foreign import javascript unsafe "$1[\"dataTransfer\"]"
@@ -327,5 +327,5 @@ getDataTransferUnchecked ::
                          (MonadIO m, IsMouseEvent self) => self -> m DataTransfer
 getDataTransferUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64479", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getDataTransfer (toMouseEvent self)))

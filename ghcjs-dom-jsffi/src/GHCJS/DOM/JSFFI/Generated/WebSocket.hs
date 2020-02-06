@@ -17,7 +17,7 @@ module GHCJS.DOM.JSFFI.Generated.WebSocket
         gTypeWebSocket)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -164,7 +164,7 @@ getProtocolUnsafe self
 getProtocolUnchecked ::
                      (MonadIO m, FromJSString result) => WebSocket -> m result
 getProtocolUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getProtocol self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 74218", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getProtocol self))
  
 foreign import javascript unsafe "$1[\"extensions\"]"
         js_getExtensions :: WebSocket -> IO (Nullable JSString)
@@ -188,7 +188,7 @@ getExtensionsUnsafe self
 getExtensionsUnchecked ::
                        (MonadIO m, FromJSString result) => WebSocket -> m result
 getExtensionsUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getExtensions self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 74242", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getExtensions self))
  
 foreign import javascript safe "$1[\"binaryType\"] = $2;"
         js_setBinaryType :: WebSocket -> JSString -> IO ()

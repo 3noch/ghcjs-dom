@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.MessageEvent
         MessageEvent(..), gTypeMessageEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -115,7 +115,7 @@ getSourceUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent.source Mozilla MessageEvent.source documentation> 
 getSourceUnchecked :: (MonadIO m) => MessageEvent -> m EventTarget
 getSourceUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getSource self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64042", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getSource self))
  
 foreign import javascript unsafe "$1[\"data\"]" js_getData ::
         MessageEvent -> IO JSVal

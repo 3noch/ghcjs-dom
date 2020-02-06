@@ -41,7 +41,7 @@ module GHCJS.DOM.JSFFI.Generated.RTCPeerConnection
         addStreamEvent, RTCPeerConnection(..), gTypeRTCPeerConnection)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -412,7 +412,7 @@ getLocalDescriptionUnchecked ::
                              (MonadIO m) => RTCPeerConnection -> m RTCSessionDescription
 getLocalDescriptionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getLocalDescription self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67494", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getLocalDescription self))
  
 foreign import javascript unsafe "$1[\"currentLocalDescription\"]"
         js_getCurrentLocalDescription ::
@@ -438,7 +438,7 @@ getCurrentLocalDescriptionUnchecked ::
                                     (MonadIO m) => RTCPeerConnection -> m RTCSessionDescription
 getCurrentLocalDescriptionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67520", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getCurrentLocalDescription self))
  
 foreign import javascript unsafe "$1[\"pendingLocalDescription\"]"
@@ -465,7 +465,7 @@ getPendingLocalDescriptionUnchecked ::
                                     (MonadIO m) => RTCPeerConnection -> m RTCSessionDescription
 getPendingLocalDescriptionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67547", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getPendingLocalDescription self))
  
 foreign import javascript unsafe "$1[\"remoteDescription\"]"
@@ -492,7 +492,7 @@ getRemoteDescriptionUnchecked ::
                               (MonadIO m) => RTCPeerConnection -> m RTCSessionDescription
 getRemoteDescriptionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getRemoteDescription self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67574", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getRemoteDescription self))
  
 foreign import javascript unsafe "$1[\"currentRemoteDescription\"]"
         js_getCurrentRemoteDescription ::
@@ -519,7 +519,7 @@ getCurrentRemoteDescriptionUnchecked ::
                                      (MonadIO m) => RTCPeerConnection -> m RTCSessionDescription
 getCurrentRemoteDescriptionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67601", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getCurrentRemoteDescription self))
  
 foreign import javascript unsafe "$1[\"pendingRemoteDescription\"]"
@@ -547,7 +547,7 @@ getPendingRemoteDescriptionUnchecked ::
                                      (MonadIO m) => RTCPeerConnection -> m RTCSessionDescription
 getPendingRemoteDescriptionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67629", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getPendingRemoteDescription self))
  
 foreign import javascript unsafe "$1[\"signalingState\"]"

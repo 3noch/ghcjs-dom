@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.CSSFontFaceLoadEvent
         gTypeCSSFontFaceLoadEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -66,7 +66,7 @@ getFontfaceUnsafe self
 getFontfaceUnchecked ::
                      (MonadIO m) => CSSFontFaceLoadEvent -> m CSSFontFaceRule
 getFontfaceUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getFontface self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49889", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getFontface self))
  
 foreign import javascript unsafe "$1[\"error\"]" js_getError ::
         CSSFontFaceLoadEvent -> IO (Nullable DOMError)
@@ -88,4 +88,4 @@ getErrorUnsafe self
 getErrorUnchecked ::
                   (MonadIO m) => CSSFontFaceLoadEvent -> m DOMError
 getErrorUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getError self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49911", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getError self))

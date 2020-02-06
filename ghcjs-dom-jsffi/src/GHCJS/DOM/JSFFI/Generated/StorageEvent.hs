@@ -13,7 +13,7 @@ module GHCJS.DOM.JSFFI.Generated.StorageEvent
         getStorageAreaUnchecked, StorageEvent(..), gTypeStorageEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -100,7 +100,7 @@ getKeyUnsafe self
 getKeyUnchecked ::
                 (MonadIO m, FromJSString result) => StorageEvent -> m result
 getKeyUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getKey self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68955", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getKey self))
  
 foreign import javascript unsafe "$1[\"oldValue\"]" js_getOldValue
         :: StorageEvent -> IO (Nullable JSString)
@@ -125,7 +125,7 @@ getOldValueUnsafe self
 getOldValueUnchecked ::
                      (MonadIO m, FromJSString result) => StorageEvent -> m result
 getOldValueUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getOldValue self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 68980", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getOldValue self))
  
 foreign import javascript unsafe "$1[\"newValue\"]" js_getNewValue
         :: StorageEvent -> IO (Nullable JSString)
@@ -150,7 +150,7 @@ getNewValueUnsafe self
 getNewValueUnchecked ::
                      (MonadIO m, FromJSString result) => StorageEvent -> m result
 getNewValueUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getNewValue self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69005", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getNewValue self))
  
 foreign import javascript unsafe "$1[\"url\"]" js_getUrl ::
         StorageEvent -> IO JSString
@@ -179,4 +179,4 @@ getStorageAreaUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/StorageEvent.storageArea Mozilla StorageEvent.storageArea documentation> 
 getStorageAreaUnchecked :: (MonadIO m) => StorageEvent -> m Storage
 getStorageAreaUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getStorageArea self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69034", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getStorageArea self))

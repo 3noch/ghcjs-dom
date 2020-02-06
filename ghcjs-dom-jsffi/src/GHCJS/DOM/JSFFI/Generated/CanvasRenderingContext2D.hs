@@ -79,7 +79,7 @@ module GHCJS.DOM.JSFFI.Generated.CanvasRenderingContext2D
         gTypeCanvasRenderingContext2D)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -936,7 +936,7 @@ createPatternUnchecked ::
                          CanvasRenderingContext2D -> image -> repetition -> m CanvasPattern
 createPatternUnchecked self image repetition
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 51707", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_createPattern self (toCanvasImageSource image)
             (toJSString repetition)))
  

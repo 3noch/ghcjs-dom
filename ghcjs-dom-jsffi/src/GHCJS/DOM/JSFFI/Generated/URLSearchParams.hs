@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.URLSearchParams
         URLSearchParams(..), gTypeURLSearchParams)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -90,7 +90,7 @@ getUnchecked ::
                URLSearchParams -> name -> m result
 getUnchecked self name
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_get self (toJSString name)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69856", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_get self (toJSString name)))
  
 foreign import javascript unsafe "$1[\"getAll\"]($2)" js_getAll ::
         URLSearchParams -> JSString -> IO JSVal

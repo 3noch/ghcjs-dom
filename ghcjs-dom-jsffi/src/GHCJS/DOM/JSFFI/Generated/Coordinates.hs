@@ -14,7 +14,7 @@ module GHCJS.DOM.JSFFI.Generated.Coordinates
         Coordinates(..), gTypeCoordinates)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -65,7 +65,7 @@ getAltitudeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Coordinates.altitude Mozilla Coordinates.altitude documentation> 
 getAltitudeUnchecked :: (MonadIO m) => Coordinates -> m Double
 getAltitudeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getAltitude self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52404", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAltitude self))
  
 foreign import javascript unsafe "$1[\"accuracy\"]" js_getAccuracy
         :: Coordinates -> IO Double
@@ -96,7 +96,7 @@ getAltitudeAccuracyUnchecked ::
                              (MonadIO m) => Coordinates -> m Double
 getAltitudeAccuracyUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getAltitudeAccuracy self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52435", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAltitudeAccuracy self))
  
 foreign import javascript unsafe "$1[\"heading\"]" js_getHeading ::
         Coordinates -> IO (Nullable Double)
@@ -116,7 +116,7 @@ getHeadingUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Coordinates.heading Mozilla Coordinates.heading documentation> 
 getHeadingUnchecked :: (MonadIO m) => Coordinates -> m Double
 getHeadingUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getHeading self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52455", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getHeading self))
  
 foreign import javascript unsafe "$1[\"speed\"]" js_getSpeed ::
         Coordinates -> IO (Nullable Double)
@@ -136,4 +136,4 @@ getSpeedUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Coordinates.speed Mozilla Coordinates.speed documentation> 
 getSpeedUnchecked :: (MonadIO m) => Coordinates -> m Double
 getSpeedUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getSpeed self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52475", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getSpeed self))

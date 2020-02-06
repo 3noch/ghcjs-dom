@@ -14,7 +14,7 @@ module GHCJS.DOM.JSFFI.Generated.PasswordCredential
         gTypePasswordCredential)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -123,4 +123,4 @@ getAdditionalDataUnchecked ::
                            (MonadIO m) => PasswordCredential -> m CredentialBodyType
 getAdditionalDataUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getAdditionalData self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66448", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAdditionalData self))

@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.MimeTypeArray
         js_getLength, getLength, MimeTypeArray(..), gTypeMimeTypeArray)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -49,7 +49,7 @@ itemUnsafe self index
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/MimeTypeArray.item Mozilla MimeTypeArray.item documentation> 
 itemUnchecked :: (MonadIO m) => MimeTypeArray -> Word -> m MimeType
 itemUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64108", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item self index))
  
 foreign import javascript unsafe "$1[$2]" js_namedItem ::
         MimeTypeArray -> JSString -> IO (Nullable MimeType)
@@ -82,7 +82,7 @@ namedItemUnchecked ::
                    (MonadIO m, ToJSString name) => MimeTypeArray -> name -> m MimeType
 namedItemUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64141", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_namedItem self (toJSString name)))
  
 foreign import javascript unsafe "$1[\"length\"]" js_getLength ::

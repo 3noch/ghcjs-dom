@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.ProcessingInstruction
         gTypeProcessingInstruction)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -56,4 +56,4 @@ getSheetUnsafe self
 getSheetUnchecked ::
                   (MonadIO m) => ProcessingInstruction -> m StyleSheet
 getSheetUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getSheet self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66727", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getSheet self))

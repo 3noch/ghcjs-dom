@@ -22,7 +22,7 @@ module GHCJS.DOM.JSFFI.Generated.Event
         getReturnValue, Event(..), gTypeEvent, IsEvent, toEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -134,7 +134,7 @@ getTargetUnchecked ::
                    (MonadIO m, IsEvent self) => self -> m EventTarget
 getTargetUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getTarget (toEvent self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 56601", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getTarget (toEvent self)))
  
 foreign import javascript unsafe "$1[\"currentTarget\"]"
         js_getCurrentTarget :: Event -> IO (Nullable EventTarget)
@@ -158,7 +158,7 @@ getCurrentTargetUnchecked ::
                           (MonadIO m, IsEvent self) => self -> m EventTarget
 getCurrentTargetUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 56625", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getCurrentTarget (toEvent self)))
  
 foreign import javascript unsafe "$1[\"eventPhase\"]"

@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.MediaStreamEvent
         MediaStreamEvent(..), gTypeMediaStreamEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -60,4 +60,4 @@ getStreamUnsafe self
 getStreamUnchecked ::
                    (MonadIO m) => MediaStreamEvent -> m MediaStream
 getStreamUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getStream self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63924", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getStream self))

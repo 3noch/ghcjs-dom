@@ -12,7 +12,7 @@ module GHCJS.DOM.JSFFI.Generated.IntersectionObserver
         gTypeIntersectionObserver)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -104,7 +104,7 @@ getRootUnsafe self
 getRootUnchecked ::
                  (MonadIO m) => IntersectionObserver -> m Element
 getRootUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getRoot self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63582", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getRoot self))
  
 foreign import javascript unsafe "$1[\"rootMargin\"]"
         js_getRootMargin :: IntersectionObserver -> IO JSString

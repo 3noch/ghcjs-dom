@@ -26,7 +26,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLTableElement
         gTypeHTMLTableElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -163,7 +163,7 @@ getCaptionUnsafe self
 getCaptionUnchecked ::
                     (MonadIO m) => HTMLTableElement -> m HTMLTableCaptionElement
 getCaptionUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getCaption self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61939", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getCaption self))
  
 foreign import javascript safe "$1[\"tHead\"] = $2;" js_setTHead ::
         HTMLTableElement -> Optional HTMLTableSectionElement -> IO ()
@@ -196,7 +196,7 @@ getTHeadUnsafe self
 getTHeadUnchecked ::
                   (MonadIO m) => HTMLTableElement -> m HTMLTableSectionElement
 getTHeadUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getTHead self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61972", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getTHead self))
  
 foreign import javascript safe "$1[\"tFoot\"] = $2;" js_setTFoot ::
         HTMLTableElement -> Optional HTMLTableSectionElement -> IO ()
@@ -229,7 +229,7 @@ getTFootUnsafe self
 getTFootUnchecked ::
                   (MonadIO m) => HTMLTableElement -> m HTMLTableSectionElement
 getTFootUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getTFoot self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 62005", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getTFoot self))
  
 foreign import javascript unsafe "$1[\"rows\"]" js_getRows ::
         HTMLTableElement -> IO HTMLCollection

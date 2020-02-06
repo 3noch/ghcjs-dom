@@ -14,7 +14,7 @@ module GHCJS.DOM.JSFFI.Generated.FileReader
         FileReader(..), gTypeFileReader)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -119,7 +119,7 @@ getResultUnsafe self
 getResultUnchecked ::
                    (MonadIO m) => FileReader -> m StringOrArrayBuffer
 getResultUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getResult self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 56895", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getResult self))
  
 foreign import javascript unsafe "$1[\"error\"]" js_getError ::
         FileReader -> IO FileError

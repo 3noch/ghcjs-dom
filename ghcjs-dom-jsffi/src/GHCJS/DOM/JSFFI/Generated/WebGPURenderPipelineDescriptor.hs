@@ -18,7 +18,7 @@ module GHCJS.DOM.JSFFI.Generated.WebGPURenderPipelineDescriptor
         gTypeWebGPURenderPipelineDescriptor)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -90,7 +90,7 @@ getVertexFunctionUnchecked ::
                            (MonadIO m) => WebGPURenderPipelineDescriptor -> m WebGPUFunction
 getVertexFunctionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getVertexFunction self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73589", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getVertexFunction self))
  
 foreign import javascript unsafe "$1[\"fragmentFunction\"] = $2;"
         js_setFragmentFunction ::
@@ -128,7 +128,7 @@ getFragmentFunctionUnchecked ::
                              (MonadIO m) => WebGPURenderPipelineDescriptor -> m WebGPUFunction
 getFragmentFunctionUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getFragmentFunction self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73627", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getFragmentFunction self))
  
 foreign import javascript unsafe "$1[\"colorAttachments\"]"
         js_getColorAttachments ::

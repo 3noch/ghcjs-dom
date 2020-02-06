@@ -14,7 +14,7 @@ module GHCJS.DOM.JSFFI.Generated.XSLTProcessor
         XSLTProcessor(..), gTypeXSLTProcessor)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -161,7 +161,7 @@ getParameterUnchecked ::
                         XSLTProcessor -> Maybe namespaceURI -> Maybe localName -> m result
 getParameterUnchecked self namespaceURI localName
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 76187", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getParameter self (toOptionalJSString namespaceURI)
             (toOptionalJSString localName)))
  

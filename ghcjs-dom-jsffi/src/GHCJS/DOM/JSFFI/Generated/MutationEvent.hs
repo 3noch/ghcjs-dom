@@ -12,7 +12,7 @@ module GHCJS.DOM.JSFFI.Generated.MutationEvent
         MutationEvent(..), gTypeMutationEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -85,7 +85,7 @@ getRelatedNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/MutationEvent.relatedNode Mozilla MutationEvent.relatedNode documentation> 
 getRelatedNodeUnchecked :: (MonadIO m) => MutationEvent -> m Node
 getRelatedNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getRelatedNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64568", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getRelatedNode self))
  
 foreign import javascript unsafe "$1[\"prevValue\"]"
         js_getPrevValue :: MutationEvent -> IO JSString

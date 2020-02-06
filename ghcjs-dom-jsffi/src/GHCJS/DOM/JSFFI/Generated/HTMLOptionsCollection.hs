@@ -12,7 +12,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLOptionsCollection
         gTypeHTMLOptionsCollection)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -81,7 +81,7 @@ itemUnsafe self index
 itemUnchecked ::
               (MonadIO m) => HTMLOptionsCollection -> Word -> m HTMLOptionElement
 itemUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_item self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61063", fromJust)) Prelude.id) . nullableToMaybe <$> (js_item self index))
  
 foreign import javascript unsafe "$1[$2]" js_namedItem ::
         HTMLOptionsCollection ->
@@ -117,7 +117,7 @@ namedItemUnchecked ::
                      HTMLOptionsCollection -> name -> m HTMLOptionElement
 namedItemUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 61099", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_namedItem self (toJSString name)))
  
 foreign import javascript safe "$1[\"length\"] = $2;" js_setLength

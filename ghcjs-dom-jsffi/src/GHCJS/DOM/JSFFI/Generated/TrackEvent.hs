@@ -8,7 +8,7 @@ module GHCJS.DOM.JSFFI.Generated.TrackEvent
         getTrackUnsafe, getTrackUnchecked, TrackEvent(..), gTypeTrackEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -57,4 +57,4 @@ getTrackUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/TrackEvent.track Mozilla TrackEvent.track documentation> 
 getTrackUnchecked :: (MonadIO m) => TrackEvent -> m Track
 getTrackUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getTrack self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69526", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getTrack self))

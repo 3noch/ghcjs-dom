@@ -13,7 +13,7 @@ module GHCJS.DOM.JSFFI.Generated.StyleSheet
         gTypeStyleSheet, IsStyleSheet, toStyleSheet)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -57,7 +57,7 @@ getTypeUnchecked ::
                    self -> m result
 getTypeUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getType (toStyleSheet self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69094", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getType (toStyleSheet self)))
  
 foreign import javascript unsafe "$1[\"disabled\"] = $2;"
         js_setDisabled :: StyleSheet -> Bool -> IO ()
@@ -117,7 +117,7 @@ getHrefUnchecked ::
                    self -> m result
 getHrefUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getHref (toStyleSheet self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69154", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getHref (toStyleSheet self)))
  
 foreign import javascript unsafe "$1[\"title\"]" js_getTitle ::
         StyleSheet -> IO (Nullable JSString)
@@ -145,7 +145,7 @@ getTitleUnchecked ::
                     self -> m result
 getTitleUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 69182", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getTitle (toStyleSheet self)))
  
 foreign import javascript unsafe "$1[\"media\"]" js_getMedia ::

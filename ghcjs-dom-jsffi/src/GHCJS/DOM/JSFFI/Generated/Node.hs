@@ -48,7 +48,7 @@ module GHCJS.DOM.JSFFI.Generated.Node
         getTextContentUnchecked, Node(..), gTypeNode, IsNode, toNode)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -238,7 +238,7 @@ lookupPrefixUnchecked ::
                         self -> Maybe namespaceURI -> m result
 lookupPrefixUnchecked self namespaceURI
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65277", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_lookupPrefix (toNode self) (toOptionalJSString namespaceURI)))
  
 foreign import javascript unsafe "$1[\"lookupNamespaceURI\"]($2)"
@@ -280,7 +280,7 @@ lookupNamespaceURIUnchecked ::
                               self -> Maybe prefix -> m result
 lookupNamespaceURIUnchecked self prefix
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65319", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_lookupNamespaceURI (toNode self) (toOptionalJSString prefix)))
  
 foreign import javascript unsafe
@@ -449,7 +449,7 @@ getOwnerDocumentUnchecked ::
                           (MonadIO m, IsNode self) => self -> m Document
 getOwnerDocumentUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65488", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getOwnerDocument (toNode self)))
  
 foreign import javascript unsafe "$1[\"parentNode\"]"
@@ -473,7 +473,7 @@ getParentNodeUnchecked ::
                        (MonadIO m, IsNode self) => self -> m Node
 getParentNodeUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getParentNode (toNode self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65512", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getParentNode (toNode self)))
  
 foreign import javascript unsafe "$1[\"parentElement\"]"
         js_getParentElement :: Node -> IO (Nullable Element)
@@ -497,7 +497,7 @@ getParentElementUnchecked ::
                           (MonadIO m, IsNode self) => self -> m Element
 getParentElementUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65536", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getParentElement (toNode self)))
  
 foreign import javascript unsafe "$1[\"childNodes\"]"
@@ -528,7 +528,7 @@ getFirstChildUnchecked ::
                        (MonadIO m, IsNode self) => self -> m Node
 getFirstChildUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getFirstChild (toNode self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65567", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getFirstChild (toNode self)))
  
 foreign import javascript unsafe "$1[\"lastChild\"]"
         js_getLastChild :: Node -> IO (Nullable Node)
@@ -550,7 +550,7 @@ getLastChildUnsafe self
 getLastChildUnchecked :: (MonadIO m, IsNode self) => self -> m Node
 getLastChildUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getLastChild (toNode self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65589", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getLastChild (toNode self)))
  
 foreign import javascript unsafe "$1[\"previousSibling\"]"
         js_getPreviousSibling :: Node -> IO (Nullable Node)
@@ -575,7 +575,7 @@ getPreviousSiblingUnchecked ::
                             (MonadIO m, IsNode self) => self -> m Node
 getPreviousSiblingUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65614", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getPreviousSibling (toNode self)))
  
 foreign import javascript unsafe "$1[\"nextSibling\"]"
@@ -600,7 +600,7 @@ getNextSiblingUnchecked ::
                         (MonadIO m, IsNode self) => self -> m Node
 getNextSiblingUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getNextSibling (toNode self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65639", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getNextSibling (toNode self)))
  
 foreign import javascript safe "$1[\"nodeValue\"] = $2;"
         js_setNodeValue :: Node -> Optional JSString -> IO ()
@@ -636,7 +636,7 @@ getNodeValueUnchecked ::
                       (MonadIO m, IsNode self, FromJSString result) => self -> m result
 getNodeValueUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getNodeValue (toNode self)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65675", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getNodeValue (toNode self)))
  
 foreign import javascript safe "$1[\"textContent\"] = $2;"
         js_setTextContent :: Node -> Optional JSString -> IO ()
@@ -672,5 +672,5 @@ getTextContentUnchecked ::
                         (MonadIO m, IsNode self, FromJSString result) => self -> m result
 getTextContentUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65711", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getTextContent (toNode self)))

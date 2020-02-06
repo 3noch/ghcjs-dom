@@ -17,7 +17,7 @@ module GHCJS.DOM.JSFFI.Generated.MutationRecord
         getOldValueUnchecked, MutationRecord(..), gTypeMutationRecord)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -86,7 +86,7 @@ getPreviousSiblingUnchecked ::
                             (MonadIO m) => MutationRecord -> m Node
 getPreviousSiblingUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getPreviousSibling self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64689", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getPreviousSibling self))
  
 foreign import javascript unsafe "$1[\"nextSibling\"]"
         js_getNextSibling :: MutationRecord -> IO (Nullable Node)
@@ -107,7 +107,7 @@ getNextSiblingUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/MutationRecord.nextSibling Mozilla MutationRecord.nextSibling documentation> 
 getNextSiblingUnchecked :: (MonadIO m) => MutationRecord -> m Node
 getNextSiblingUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getNextSibling self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64710", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getNextSibling self))
  
 foreign import javascript unsafe "$1[\"attributeName\"]"
         js_getAttributeName :: MutationRecord -> IO (Nullable JSString)
@@ -133,7 +133,7 @@ getAttributeNameUnchecked ::
                           (MonadIO m, FromJSString result) => MutationRecord -> m result
 getAttributeNameUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getAttributeName self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64736", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getAttributeName self))
  
 foreign import javascript unsafe "$1[\"attributeNamespace\"]"
         js_getAttributeNamespace ::
@@ -160,7 +160,7 @@ getAttributeNamespaceUnchecked ::
                                (MonadIO m, FromJSString result) => MutationRecord -> m result
 getAttributeNamespaceUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getAttributeNamespace self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64763", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getAttributeNamespace self))
  
 foreign import javascript unsafe "$1[\"oldValue\"]" js_getOldValue
         :: MutationRecord -> IO (Nullable JSString)
@@ -185,4 +185,4 @@ getOldValueUnsafe self
 getOldValueUnchecked ::
                      (MonadIO m, FromJSString result) => MutationRecord -> m result
 getOldValueUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getOldValue self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 64788", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getOldValue self))

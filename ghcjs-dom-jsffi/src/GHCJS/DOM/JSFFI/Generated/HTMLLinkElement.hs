@@ -20,7 +20,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLLinkElement
         gTypeHTMLLinkElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -237,7 +237,7 @@ getCrossOriginUnchecked ::
                         (MonadIO m, FromJSString result) => HTMLLinkElement -> m result
 getCrossOriginUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getCrossOrigin self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 60047", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getCrossOrigin self))
  
 foreign import javascript unsafe "$1[\"sheet\"]" js_getSheet ::
         HTMLLinkElement -> IO StyleSheet

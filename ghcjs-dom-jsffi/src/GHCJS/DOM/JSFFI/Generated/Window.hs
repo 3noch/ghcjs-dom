@@ -80,7 +80,7 @@ module GHCJS.DOM.JSFFI.Generated.Window
         webKitTransitionEnd, Window(..), gTypeWindow)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -257,7 +257,7 @@ openDatabaseUnchecked ::
 openDatabaseUnchecked self name version displayName estimatedSize
   creationCallback
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 74520", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_openDatabase self (toJSString name) (toJSString version)
             (toJSString displayName)
             estimatedSize
@@ -339,7 +339,7 @@ openUnchecked ::
                 Window -> Maybe url -> Maybe target -> Maybe features -> m Window
 openUnchecked self url target features
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 74602", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_open self (toOptionalJSString url) (toOptionalJSString target)
             (toOptionalJSString features)))
  
@@ -419,7 +419,7 @@ promptUnchecked ::
                   Window -> Maybe message -> Maybe defaultValue -> m result
 promptUnchecked self message defaultValue
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 74682", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_prompt self (toOptionalJSString message)
             (toOptionalJSString defaultValue)))
  
@@ -630,7 +630,7 @@ getSelectionUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection Mozilla Window.getSelection documentation> 
 getSelectionUnchecked :: (MonadIO m) => Window -> m Selection
 getSelectionUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getSelection self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 74893", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getSelection self))
  
 foreign import javascript unsafe
         "($1[\"find\"]($2, $3, $4, $5, $6,\n$7, $8) ? 1 : 0)" js_find ::
@@ -880,7 +880,7 @@ matchingElementInFlatTreeUnchecked ::
                                      Window -> scope -> selectors -> m Element
 matchingElementInFlatTreeUnchecked self scope selectors
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75143", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_matchingElementInFlatTree self (toNode scope)
             (toJSString selectors)))
  
@@ -1063,7 +1063,7 @@ getTopUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Window.top Mozilla Window.top documentation> 
 getTopUnchecked :: (MonadIO m) => Window -> m Window
 getTopUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getTop self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75326", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getTop self))
  
 foreign import javascript unsafe "$1[\"opener\"]" js_getOpener ::
         Window -> IO (Nullable Window)
@@ -1082,7 +1082,7 @@ getOpenerUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Window.opener Mozilla Window.opener documentation> 
 getOpenerUnchecked :: (MonadIO m) => Window -> m Window
 getOpenerUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getOpener self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75345", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getOpener self))
  
 foreign import javascript unsafe "$1[\"parent\"]" js_getParent ::
         Window -> IO (Nullable Window)
@@ -1101,7 +1101,7 @@ getParentUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Window.parent Mozilla Window.parent documentation> 
 getParentUnchecked :: (MonadIO m) => Window -> m Window
 getParentUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getParent self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75364", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getParent self))
  
 foreign import javascript unsafe "$1[\"frameElement\"]"
         js_getFrameElement :: Window -> IO (Nullable Element)
@@ -1122,7 +1122,7 @@ getFrameElementUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Window.frameElement Mozilla Window.frameElement documentation> 
 getFrameElementUnchecked :: (MonadIO m) => Window -> m Element
 getFrameElementUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getFrameElement self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75385", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getFrameElement self))
  
 foreign import javascript unsafe "$1[\"navigator\"]"
         js_getNavigator :: Window -> IO Navigator

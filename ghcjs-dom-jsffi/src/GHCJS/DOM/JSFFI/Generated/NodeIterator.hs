@@ -13,7 +13,7 @@ module GHCJS.DOM.JSFFI.Generated.NodeIterator
         gTypeNodeIterator)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -53,7 +53,7 @@ nextNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator.nextNode Mozilla NodeIterator.nextNode documentation> 
 nextNodeUnchecked :: (MonadIO m) => NodeIterator -> m Node
 nextNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_nextNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65768", fromJust)) Prelude.id) . nullableToMaybe <$> (js_nextNode self))
  
 foreign import javascript unsafe "$1[\"previousNode\"]()"
         js_previousNode :: NodeIterator -> IO (Nullable Node)
@@ -78,7 +78,7 @@ previousNodeUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator.previousNode Mozilla NodeIterator.previousNode documentation> 
 previousNodeUnchecked :: (MonadIO m) => NodeIterator -> m Node
 previousNodeUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_previousNode self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 65793", fromJust)) Prelude.id) . nullableToMaybe <$> (js_previousNode self))
  
 foreign import javascript unsafe "$1[\"detach\"]()" js_detach ::
         NodeIterator -> IO ()

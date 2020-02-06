@@ -20,7 +20,7 @@ module GHCJS.DOM.JSFFI.Generated.IDBIndex
         gTypeIDBIndex)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -344,7 +344,7 @@ getKeyPathUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/IDBIndex.keyPath Mozilla IDBIndex.keyPath documentation> 
 getKeyPathUnchecked :: (MonadIO m) => IDBIndex -> m IDBKeyPath
 getKeyPathUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getKeyPath self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 62611", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getKeyPath self))
  
 foreign import javascript unsafe "($1[\"multiEntry\"] ? 1 : 0)"
         js_getMultiEntry :: IDBIndex -> IO Bool

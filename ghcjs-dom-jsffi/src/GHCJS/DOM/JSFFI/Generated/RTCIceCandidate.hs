@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.RTCIceCandidate
         RTCIceCandidate(..), gTypeRTCIceCandidate)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -70,7 +70,7 @@ getSdpMidUnsafe self
 getSdpMidUnchecked ::
                    (MonadIO m, FromJSString result) => RTCIceCandidate -> m result
 getSdpMidUnchecked self
-  = liftIO (fromJust . fromMaybeJSString <$> (js_getSdpMid self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67055", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getSdpMid self))
  
 foreign import javascript unsafe "$1[\"sdpMLineIndex\"]"
         js_getSdpMLineIndex :: RTCIceCandidate -> IO (Nullable Word)
@@ -94,4 +94,4 @@ getSdpMLineIndexUnchecked ::
                           (MonadIO m) => RTCIceCandidate -> m Word
 getSdpMLineIndexUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getSdpMLineIndex self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 67079", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getSdpMLineIndex self))

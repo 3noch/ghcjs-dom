@@ -11,7 +11,7 @@ module GHCJS.DOM.JSFFI.Generated.WebGPULibrary
         WebGPULibrary(..), gTypeWebGPULibrary)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -62,7 +62,7 @@ functionWithNameUnchecked ::
                             WebGPULibrary -> name -> m WebGPUFunction
 functionWithNameUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 73333", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_functionWithName self (toJSString name)))
  
 foreign import javascript unsafe "$1[\"sourceCode\"]"

@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.Animation
         gTypeAnimation)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -61,7 +61,7 @@ getEffectUnsafe self
 -- | <https://developer.mozilla.org/en-US/docs/Web/API/Animation.effect Mozilla Animation.effect documentation> 
 getEffectUnchecked :: (MonadIO m) => Animation -> m AnimationEffect
 getEffectUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getEffect self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49383", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getEffect self))
  
 foreign import javascript unsafe "$1[\"timeline\"]" js_getTimeline
         :: Animation -> IO (Nullable AnimationTimeline)
@@ -84,4 +84,4 @@ getTimelineUnsafe self
 getTimelineUnchecked ::
                      (MonadIO m) => Animation -> m AnimationTimeline
 getTimelineUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getTimeline self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 49406", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getTimeline self))

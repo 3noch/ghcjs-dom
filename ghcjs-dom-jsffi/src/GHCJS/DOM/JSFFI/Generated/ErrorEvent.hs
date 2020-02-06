@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.ErrorEvent
         getColno, js_getError, getError, ErrorEvent(..), gTypeErrorEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)

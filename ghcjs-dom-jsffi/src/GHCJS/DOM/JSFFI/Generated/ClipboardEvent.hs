@@ -9,7 +9,7 @@ module GHCJS.DOM.JSFFI.Generated.ClipboardEvent
         getClipboardDataUnchecked, ClipboardEvent(..), gTypeClipboardEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -62,4 +62,4 @@ getClipboardDataUnchecked ::
                           (MonadIO m) => ClipboardEvent -> m DataTransfer
 getClipboardDataUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_getClipboardData self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 52265", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getClipboardData self))

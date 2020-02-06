@@ -21,7 +21,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLFormElement
         gTypeHTMLFormElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -64,7 +64,7 @@ getAtUnsafe self index
 getAtUnchecked ::
                (MonadIO m) => HTMLFormElement -> Word -> m Element
 getAtUnchecked self index
-  = liftIO (fromJust . nullableToMaybe <$> (js_getAt self index))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 58071", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getAt self index))
  
 foreign import javascript unsafe "$1[$2]" js_get ::
         HTMLFormElement -> JSString -> IO (Nullable RadioNodeListOrElement)
@@ -96,7 +96,7 @@ getUnchecked ::
                HTMLFormElement -> name -> m RadioNodeListOrElement
 getUnchecked self name
   = liftIO
-      (fromJust . nullableToMaybe <$> (js_get self (toJSString name)))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 58103", fromJust)) Prelude.id) . nullableToMaybe <$> (js_get self (toJSString name)))
  
 foreign import javascript unsafe "$1[\"submit\"]()" js_submit ::
         HTMLFormElement -> IO ()

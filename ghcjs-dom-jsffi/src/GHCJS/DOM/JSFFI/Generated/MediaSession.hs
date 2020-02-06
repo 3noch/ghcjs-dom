@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.MediaSession
         MediaSession(..), gTypeMediaSession)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -81,4 +81,4 @@ getControlsUnsafe self
 getControlsUnchecked ::
                      (MonadIO m) => MediaSession -> m MediaRemoteControls
 getControlsUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getControls self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63861", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getControls self))

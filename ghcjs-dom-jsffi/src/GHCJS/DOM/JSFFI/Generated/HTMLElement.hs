@@ -28,7 +28,7 @@ module GHCJS.DOM.JSFFI.Generated.HTMLElement
         HTMLElement(..), gTypeHTMLElement, IsHTMLElement, toHTMLElement)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -316,7 +316,7 @@ getOffsetParentUnchecked ::
                          (MonadIO m, IsHTMLElement self) => self -> m Element
 getOffsetParentUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 57795", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getOffsetParent (toHTMLElement self)))
  
 foreign import javascript unsafe "$1[\"offsetTop\"]"

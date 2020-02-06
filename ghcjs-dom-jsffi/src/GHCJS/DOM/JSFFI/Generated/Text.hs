@@ -8,7 +8,7 @@ module GHCJS.DOM.JSFFI.Generated.Text
         js_getWholeText, getWholeText, Text(..), gTypeText, IsText, toText)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)

@@ -24,7 +24,7 @@ module GHCJS.DOM.JSFFI.Generated.XMLHttpRequest
         getResponseXMLUnchecked, XMLHttpRequest(..), gTypeXMLHttpRequest)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -144,7 +144,7 @@ getResponseHeaderUnchecked ::
                              XMLHttpRequest -> name -> m result
 getResponseHeaderUnchecked self name
   = liftIO
-      (fromJust . fromMaybeJSString <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75776", fromJust)) Prelude.id) . fromMaybeJSString <$>
          (js_getResponseHeader self (toJSString name)))
  
 foreign import javascript unsafe "$1[\"getAllResponseHeaders\"]()"
@@ -299,7 +299,7 @@ getResponseTextUnchecked ::
                          (MonadIO m, FromJSString result) => XMLHttpRequest -> m result
 getResponseTextUnchecked self
   = liftIO
-      (fromJust . fromMaybeJSString <$> (js_getResponseText self))
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75931", fromJust)) Prelude.id) . fromMaybeJSString <$> (js_getResponseText self))
  
 foreign import javascript safe "$1[\"responseXML\"]"
         js_getResponseXML :: XMLHttpRequest -> IO (Nullable Document)
@@ -322,4 +322,4 @@ getResponseXMLUnsafe self
 getResponseXMLUnchecked ::
                         (MonadIO m) => XMLHttpRequest -> m Document
 getResponseXMLUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getResponseXML self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 75954", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getResponseXML self))

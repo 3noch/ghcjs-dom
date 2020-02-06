@@ -16,7 +16,7 @@ module GHCJS.DOM.JSFFI.Generated.ParentNode
         gTypeParentNode, IsParentNode, toParentNode)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -96,7 +96,7 @@ querySelectorUnchecked ::
                          self -> selectors -> m Element
 querySelectorUnchecked self selectors
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66231", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_querySelector (toParentNode self) (toJSString selectors)))
  
 foreign import javascript safe "$1[\"querySelectorAll\"]($2)"
@@ -151,7 +151,7 @@ getFirstElementChildUnchecked ::
                               (MonadIO m, IsParentNode self) => self -> m Element
 getFirstElementChildUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66286", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getFirstElementChild (toParentNode self)))
  
 foreign import javascript unsafe "$1[\"lastElementChild\"]"
@@ -177,7 +177,7 @@ getLastElementChildUnchecked ::
                              (MonadIO m, IsParentNode self) => self -> m Element
 getLastElementChildUnchecked self
   = liftIO
-      (fromJust . nullableToMaybe <$>
+      ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 66312", fromJust)) Prelude.id) . nullableToMaybe <$>
          (js_getLastElementChild (toParentNode self)))
  
 foreign import javascript unsafe "$1[\"childElementCount\"]"

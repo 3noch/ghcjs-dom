@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.MediaEncryptedEvent
         gTypeMediaEncryptedEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -73,4 +73,4 @@ getInitDataUnsafe self
 getInitDataUnchecked ::
                      (MonadIO m) => MediaEncryptedEvent -> m ArrayBuffer
 getInitDataUnchecked self
-  = liftIO (fromJust . nullableToMaybe <$> (js_getInitData self))
+  = liftIO ((Prelude.maybe (Prelude.fst (Prelude.error "We found it 63676", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getInitData self))

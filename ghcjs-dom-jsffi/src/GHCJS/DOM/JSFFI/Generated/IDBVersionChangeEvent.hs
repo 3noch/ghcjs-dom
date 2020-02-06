@@ -10,7 +10,7 @@ module GHCJS.DOM.JSFFI.Generated.IDBVersionChangeEvent
         IDBVersionChangeEvent(..), gTypeIDBVersionChangeEvent)
        where
 import Prelude ((.), (==), (>>=), return, IO, Int, Float, Double, Bool(..), Maybe, maybe, fromIntegral, round, fmap, Show, Read, Eq, Ord)
-import qualified Prelude (error)
+import qualified Prelude
 import Data.Typeable (Typeable)
 import GHCJS.Types (JSVal(..), JSString)
 import GHCJS.Foreign (jsNull, jsUndefined)
@@ -72,4 +72,4 @@ getNewVersionUnchecked ::
                        (MonadIO m) => IDBVersionChangeEvent -> m Word64
 getNewVersionUnchecked self
   = liftIO
-      (round . fromJust . nullableToMaybe <$> (js_getNewVersion self))
+      (round . (Prelude.maybe (Prelude.fst (Prelude.error "We found it 63365", fromJust)) Prelude.id) . nullableToMaybe <$> (js_getNewVersion self))
